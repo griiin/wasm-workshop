@@ -1,5 +1,3 @@
-#![feature(wasm_import_memory)]
-#![wasm_import_memory]
 use std::ffi::CString;
 
 extern "C" {

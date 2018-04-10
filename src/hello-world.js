@@ -1,8 +1,6 @@
-var memory = new WebAssembly.Memory({ initial: 20 })
 var importObject = {
   env: {
-    change_html_value,
-    memory
+    change_html_value
   }
 }
 
@@ -21,5 +19,6 @@ function change_html_value(offset, length) {
 
 WebAssembly.instantiateStreaming(fetch('hello-world.wasm'), importObject)
   .then(results => {
-    r.instance.exports.hello_world()
+    window.memory = results.instance.exports.memory
+    results.instance.exports.hello_world()
   })
